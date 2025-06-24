@@ -21,7 +21,7 @@ export default function Color({ color, onDelete, onChange, id }) {
   const handleShowForm = () => setShowForm(!showForm);
   const handleClipboard = async (content) => {
     try {
-      const success = await navigator.clipboard.writeText(content);
+      await navigator.clipboard.writeText(content);
       setCopied(true);
     } catch (error) {
       console.error("Clippy is sorry", error);
