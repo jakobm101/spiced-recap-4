@@ -9,6 +9,10 @@ export default function Color({ color, onDelete, onChange, id }) {
   const [copiedToClipboard, setCopied] = useState(false);
   const [contrastQuotient, setContrastQuotient] = useState("");
 
+  useEffect( () => {
+    setContrastQuotient(callContrastAPI(color.hex, color.contrastText))
+  },[]);
+
   useEffect(() => {
     if (copiedToClipboard) {
       const interval = setInterval(() => {
@@ -38,8 +42,7 @@ export default function Color({ color, onDelete, onChange, id }) {
       })
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
-          setContrastQuotient(json.contrast);
+          setContrastQuotient(json.overall)
         });
     } catch (error) {
       console.error(error);
@@ -55,12 +58,9 @@ export default function Color({ color, onDelete, onChange, id }) {
       }}
     >
       <h3 className="color-card-headline">{color.hex}</h3>
-      <button onClick={() => callContrastAPI(color.hex, color.contrastText)}>
-        test api
-      </button>
       <p>
         {contrastQuotient &&
-          `The contrast quotient is ${Math.floor( parseFloat(contrastQuotient)/ 1.8) }  out of 10`}
+          `The contrast quotient is ${contrastQuotient}`}
       </p>
       <button onClick={() => handleClipboard(color.hex)}>📋 copy </button>
       <span hidden={!copiedToClipboard}>copied successfully</span>
