@@ -7,6 +7,7 @@ export default function Color({ color, onDelete, onChange, id }) {
   const [showDelete, setShowDelete] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [copiedToClipboard, setCopied] = useState(false);
+  const [contrastQuotient, setContrastQuotient] = useState("");
 
   useEffect(() => {
     if (copiedToClipboard) {
@@ -28,6 +29,23 @@ export default function Color({ color, onDelete, onChange, id }) {
     }
   };
 
+  const callContrastAPI = async (color1, color2) => {
+    try {
+      await fetch("https://www.aremycolorsaccessible.com/api/are-they", {
+        mode: "cors",
+        method: "POST",
+        body: JSON.stringify({ colors: [color1, color2] }),
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+          setContrastQuotient(json.contrast);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div
       className="color-card"
@@ -37,6 +55,13 @@ export default function Color({ color, onDelete, onChange, id }) {
       }}
     >
       <h3 className="color-card-headline">{color.hex}</h3>
+      <button onClick={() => callContrastAPI(color.hex, color.contrastText)}>
+        test api
+      </button>
+      <p>
+        {contrastQuotient &&
+          `The contrast quotient is ${Math.floor( parseFloat(contrastQuotient)/ 1.8) }  out of 10`}
+      </p>
       <button onClick={() => handleClipboard(color.hex)}>📋 copy </button>
       <span hidden={!copiedToClipboard}>copied successfully</span>
       <h4>{color.role}</h4>
