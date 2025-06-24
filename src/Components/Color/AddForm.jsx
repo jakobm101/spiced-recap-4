@@ -1,25 +1,29 @@
 import { uid } from "uid";
 
 export default function AddForm({ handleAdd }) {
-  const inputs = ["role", "hex", "contrastText"];
+  const inputs = [
+    { name: "role", placeholder: "Primary Text Color" },
+    { name: "hex", placeholder: "#123456", color: true },
+    { name: "contrastText", placeholder: "#123456", color: true },
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    console.log(data.get("role"));
-    // const role = data.get("role");
-    let [role, hex, contrastText] = inputs.map((item) => data.get(item));
-    hex[0] !== "#" && (hex = "#" + hex);
-    handleAdd(role, hex, contrastText);
+    console.log(data);
+    handleAdd();
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {inputs.map((item) => {
+      {inputs.map(({name, placeholder, color}) => {
         return (
           <div key={uid()}>
-            <label htmlFor={item} />
-            <input placeholder={item} type="text" id={item} name={item} />
+            <label htmlFor={name}>{name}</label>
+            <input placeholder={placeholder} type="text" name={name} id={name} />
+            {color && (
+              <input type="color" name={name + "Picker"} id={name + "Picker"} />
+            )}
           </div>
         );
       })}

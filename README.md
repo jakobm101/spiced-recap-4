@@ -1,7 +1,5 @@
 # Todos
 ## 1 add color
-- [ ] add single color
-- [ ] create form for adding color
 
 
 # Recap Project 4: Theme Creator
