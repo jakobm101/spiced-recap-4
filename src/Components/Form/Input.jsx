@@ -22,14 +22,6 @@ export default function Input({
   return (
     <div className="input-unit">
       <label htmlFor={name}>{name}</label>
-      <input
-        type={type}
-        id={name}
-        name={name}
-        value={newValue}
-        onInput={handleChange}
-        placeholder={placeholder}
-      />
       {color && (
         <input
           type="color"
@@ -39,6 +31,14 @@ export default function Input({
           value={oldColor ?? oldColor}
         />
       )}
+      <input
+        type={type}
+        id={name}
+        name={name}
+        value={newValue}
+        onInput={handleChange}
+        placeholder={placeholder}
+      />{" "}
     </div>
   );
 }
