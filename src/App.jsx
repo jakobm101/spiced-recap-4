@@ -9,10 +9,10 @@ function App() {
   const [colors, setColors] = useState(initialColors);
 
   const addColor = (
-    id = uid(),
     role = "test",
     hex = "#345132",
-    contrastText = "#ffffff"
+    contrastText = "#ffffff",
+    id = uid()
   ) => {
     setColors([
       { id: id, role: role, hex: hex, contrastText: contrastText },
