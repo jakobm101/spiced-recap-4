@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Color.css";
 
-export default function Color({ color, onDelete }) {
+export default function Color({ color, onDelete, onChange }) {
   const [show, setShow] = useState(false);
   const showConfirm = () => {
     setShow(!show);
@@ -18,6 +18,7 @@ export default function Color({ color, onDelete }) {
       <h3 className="color-card-headline">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
+    <button onClick={onChange}>⚙️ edit</button>
       <p className="color-card-deletion-menu__p">{show ? "Are you sure?" : ""}</p>
       <button onClick={showConfirm}>
         {!show ? "🗑️ delete" : "😱 Cancel "}
