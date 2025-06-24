@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       <h1>Theme Creator</h1>
-      <AddForm handleSubmit={addColor}/>
+      <AddForm handleAdd={addColor}/>
       {colors.map((color) => {
         return <Color key={color.id} color={color} />;
       })}
