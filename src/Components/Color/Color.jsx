@@ -5,6 +5,7 @@ import "./Color.css";
 export default function Color({ color, onDelete, onChange, id }) {
   const [showDelete, setShowDelete] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const hider = !showForm ? "hider" : "";
 
@@ -12,9 +13,12 @@ export default function Color({ color, onDelete, onChange, id }) {
   const handleShowForm = () => setShowForm(!showForm);
   const handleClipboard = async (content) => {
     try {
-      await navigator.clipboard.writeText(content)
+      const success = await navigator.clipboard.writeText(content);
+      // if (!success) throw new Error("shit");
+
+      setCopied(true);
     } catch (error) {
-      console.error('Clippy is sorry',error);
+      console.error("Clippy is sorry", error);
     }
   };
 
@@ -28,6 +32,7 @@ export default function Color({ color, onDelete, onChange, id }) {
     >
       <h3 className="color-card-headline">{color.hex}</h3>
       <button onClick={() => handleClipboard(color.hex)}>📋 copy </button>
+      <span hidden={!copied}>copied successfully</span>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       <AddForm classes={hider} handleAdd={onChange} id={id} />
