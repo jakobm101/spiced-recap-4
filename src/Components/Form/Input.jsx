@@ -20,7 +20,7 @@ export default function Input({
   };
 
   return (
-    <>
+    <div className="input-unit">
       <label htmlFor={name}>{name}</label>
       <input
         type={type}
@@ -39,6 +39,6 @@ export default function Input({
           value={oldColor ?? oldColor}
         />
       )}
-    </>
+    </div>
   );
 }

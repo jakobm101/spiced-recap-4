@@ -1,4 +1,5 @@
-import Input from "../Form/Input";
+import Input from "./Input";
+import './Form.css'
 
 export default function AddForm({ handleAdd }) {
   const handleSubmit = (e) => {
@@ -7,7 +8,7 @@ export default function AddForm({ handleAdd }) {
     let [role, hex, contrast] = ["role", "hex", "contrast"].map((it) =>
       data.get(it)
     );
-    handleAdd(role || "⭐️", hex || '#ffffff', contrast || "#000000");
+    handleAdd(role || "⭐️", hex || "#ffffff", contrast || "#000000");
   };
 
   return (

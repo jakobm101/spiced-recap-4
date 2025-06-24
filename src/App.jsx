@@ -1,6 +1,6 @@
 import { initialColors } from "./lib/colors";
 import { uid } from "uid";
-import AddForm from "./Components/Color/AddForm";
+import AddForm from "./Components/Form/AddForm";
 import Color from "./Components/Color/Color";
 import "./App.css";
 import { useState } from "react";

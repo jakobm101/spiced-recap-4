@@ -1,0 +1,39 @@
+form {
+    border: 1px solid gray;
+    border-radius: 5px;
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+    width:400px;
+    flex-flow: column;
+    gap: 10px;
+}
+
+label {
+    width: 70px;
+    display: inline-block;
+}
+
+.input-unit {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+[type='text']{
+    width: 200px;
+}
+
+[type='color']{
+    padding: 0;
+    width: 31px;
+    height: 33px;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+
+button {
+    cursor: pointer;
+    width: 150px;
+}
