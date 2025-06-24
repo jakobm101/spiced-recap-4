@@ -14,19 +14,42 @@ function App() {
       ...colors,
     ]);
   };
-  
+
   const removeColor = (id) => {
-    console.log('removing',{id});
-    setColors(colors.filter((color) => color.id !== id))
-  }
+    setColors(colors.filter((color) => color.id !== id));
+  };
+
+  const changeColor = (role, hex, contrastText, id) => {
+    let newColors = [...colors];
+    newColors.filter((color) => {
+      if (color.id === id) {
+        color.role = role;
+        color.hex = hex;
+        color.contrastText = contrastText;
+      }
+    });
+    setColors(newColors);
+  };
 
   return (
     <>
       <h1>Theme Creator</h1>
+      <button onClick={() => changeColor(colors[0].id, "#00dd33")}>
+        {" "}
+        change color [0]{" "}
+      </button>
       <AddForm handleAdd={addColor} />
-    {!colors.length && <h2>Add some colors ⭐️</h2>}
+      {!colors.length && <h2>Add some colors ⭐️</h2>}
       {colors.map((color) => {
-        return <Color onDelete={() => removeColor(color.id)} key={color.id} color={color} />;
+        return (
+          <Color
+            onDelete={() => removeColor(color.id)}
+            key={color.id}
+            id={color.id}
+            color={color}
+            onChange={changeColor}
+          />
+        );
       })}
     </>
   );

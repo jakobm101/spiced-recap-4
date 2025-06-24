@@ -1,11 +1,14 @@
 import { useState } from "react";
+import AddForm from "../Form/AddForm";
 import "./Color.css";
 
-export default function Color({ color, onDelete }) {
-  const [show, setShow] = useState(false);
-  const showConfirm = () => {
-    setShow(!show);
-  };
+export default function Color({ color, onDelete, onChange, id }) {
+  const [showDelete, setShowDelete] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const hider = !showForm ? "hider" : "";
+
+  const handleShowDeleteMenu = () => setShowDelete(!showDelete);
+  const handleShowForm = () => setShowForm(!showForm);
 
   return (
     <div
@@ -18,11 +21,15 @@ export default function Color({ color, onDelete }) {
       <h3 className="color-card-headline">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      <p className="color-card-deletion-menu__p">{show ? "Are you sure?" : ""}</p>
-      <button onClick={showConfirm}>
-        {!show ? "🗑️ delete" : "😱 Cancel "}
+      <AddForm classes={hider} handleAdd={onChange} id={id} />
+      <button onClick={handleShowForm}>⚙️ edit</button>
+      <p className="color-card-deletion-menu__p">
+        {showDelete ? "Are you sure?" : ""}
+      </p>
+      <button onClick={handleShowDeleteMenu}>
+        {!showDelete ? "🗑️ delete" : "😱 Cancel "}
       </button>
-      <button hidden={!show} onClick={onDelete}>
+      <button hidden={!showDelete} onClick={onDelete}>
         💣 Yes! Delete!
       </button>
     </div>

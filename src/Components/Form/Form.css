@@ -54,3 +54,7 @@ input:nth-child(3) {
   padding: 0;
   padding-bottom: 1px;
 }
+
+.hider {
+  display: none;
+}
