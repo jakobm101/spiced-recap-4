@@ -24,6 +24,7 @@ function App() {
     <>
       <h1>Theme Creator</h1>
       <AddForm handleAdd={addColor} />
+    {!colors.length && <h2>Add some colors ⭐️</h2>}
       {colors.map((color) => {
         return <Color onDelete={() => removeColor(color.id)} key={color.id} color={color} />;
       })}
