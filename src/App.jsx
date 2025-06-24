@@ -8,25 +8,25 @@ import { useState } from "react";
 function App() {
   const [colors, setColors] = useState(initialColors);
 
-  const addColor = (
-    role = "⭐️",
-    hex = "#345132",
-    contrastText = "#ffffff",
-    id = uid()
-  ) => {
+  const addColor = (role, hex, contrastText, id = uid()) => {
     setColors([
       { id: id, role: role, hex: hex, contrastText: contrastText },
       ...colors,
     ]);
-    console.log(colors);
   };
+  
+  const removeColor = (id) => {
+    console.log('removing',{id});
+    setColors(colors.filter((color) => color.id !== id))
+  }
 
   return (
     <>
       <h1>Theme Creator</h1>
       <AddForm handleAdd={addColor} />
+    {!colors.length && <h2>Add some colors ⭐️</h2>}
       {colors.map((color) => {
-        return <Color key={color.id} color={color} />;
+        return <Color onDelete={() => removeColor(color.id)} key={color.id} color={color} />;
       })}
     </>
   );
