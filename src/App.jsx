@@ -1,4 +1,5 @@
 import { initialColors } from "./lib/colors";
+import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 import AddForm from "./Components/Form/AddForm";
 import Color from "./Components/Color/Color";
@@ -6,7 +7,7 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [colors, setColors] = useState(initialColors);
+  const [colors, setColors] = useLocalStorageState('initialColors', {defaultValue: initialColors});
 
   const addColor = (role, hex, contrastText, id = uid()) => {
     setColors([
