@@ -1,0 +1,55 @@
+form {
+  font-weight: bold;
+  box-shadow: 0 2px;
+  border: 2px solid;
+  border-radius: 5px;
+  display: flex;
+  padding: 10px;
+  margin: 10px;
+  width: 400px;
+  flex-flow: column;
+  gap: 10px;
+}
+
+label {
+  width: 70px;
+  display: inline-block;
+}
+
+.input-unit {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+[type="text"] {
+  width: 280px;
+  padding: 0;
+  padding-inline-start: 5px;
+  padding-bottom: 1px;
+}
+
+[type="color"] {
+  padding: 0;
+  width: 31px;
+  height: 33px;
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+  width: 150px;
+  margin-top: 20px;
+  border: 2px solid;
+  border-radius: 5px;
+  box-shadow: 0 2px;
+}
+
+input:nth-child(3) {
+  width: 80px;
+  text-align: center;
+  padding: 0;
+  padding-bottom: 1px;
+}
