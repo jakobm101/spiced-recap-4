@@ -8,17 +8,11 @@ import { useState } from "react";
 function App() {
   const [colors, setColors] = useState(initialColors);
 
-  const addColor = (
-    role = "⭐️",
-    hex = "#345132",
-    contrastText = "#ffffff",
-    id = uid()
-  ) => {
+  const addColor = (role, hex, contrastText, id = uid()) => {
     setColors([
       { id: id, role: role, hex: hex, contrastText: contrastText },
       ...colors,
     ]);
-    console.log(colors);
   };
 
   return (
