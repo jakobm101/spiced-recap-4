@@ -19,19 +19,25 @@ function App() {
     setColors(colors.filter((color) => color.id !== id));
   };
 
-  const changeColor = (id, hex = '#000000') => {
-    console.log(id);
-    
+  const changeColor = (role, hex, contrastText, id) => {
     let newColors = [...colors];
-    newColors.filter((color) => color.id === id && (color.hex = hex));
+    newColors.filter((color) => {
+      if (color.id === id) {
+        color.role = role;
+        color.hex = hex;
+        color.contrastText = contrastText;
+      }
+    });
     setColors(newColors);
-    
   };
 
   return (
     <>
       <h1>Theme Creator</h1>
-      <button onClick={() => changeColor(colors[0].id, '#00dd33')}> change color [0] </button>
+      <button onClick={() => changeColor(colors[0].id, "#00dd33")}>
+        {" "}
+        change color [0]{" "}
+      </button>
       <AddForm handleAdd={addColor} />
       {!colors.length && <h2>Add some colors ⭐️</h2>}
       {colors.map((color) => {
@@ -39,8 +45,9 @@ function App() {
           <Color
             onDelete={() => removeColor(color.id)}
             key={color.id}
+            id={color.id}
             color={color}
-            onChange={() => changeColor(color.id)}
+            onChange={changeColor}
           />
         );
       })}
