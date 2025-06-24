@@ -1,4 +1,5 @@
 import { initialColors } from "./lib/colors";
+import AddForm from "./Components/Color/AddForm";
 import Color from "./Components/Color/Color";
 import "./App.css";
 import { useState } from "react";
@@ -22,8 +23,7 @@ function App() {
   return (
     <>
       <h1>Theme Creator</h1>
-      <button onClick={addColor}>add color</button>
-
+      <AddForm handleSubmit={addColor}/>
       {colors.map((color) => {
         return <Color key={color.id} color={color} />;
       })}
