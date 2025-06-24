@@ -17,8 +17,6 @@ export default function Color({ color, onDelete, onChange, id }) {
     }
   }, [copiedToClipboard]);
 
-  const hider = !showForm ? "hider" : "";
-
   const handleShowDeleteMenu = () => setShowDelete(!showDelete);
   const handleShowForm = () => setShowForm(!showForm);
   const handleClipboard = async (content) => {
@@ -43,7 +41,11 @@ export default function Color({ color, onDelete, onChange, id }) {
       <span hidden={!copiedToClipboard}>copied successfully</span>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      <AddForm classes={hider} handleAdd={onChange} id={id} />
+      <AddForm
+        classes={!showForm ? "hider" : ""}
+        handleAdd={onChange}
+        id={id}
+      />
       <button onClick={handleShowForm}>⚙️ edit</button>
       <p className="color-card-deletion-menu__p">
         {showDelete ? "Are you sure?" : ""}
