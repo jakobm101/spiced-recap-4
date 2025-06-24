@@ -1,11 +1,21 @@
 import { useState } from "react";
 import AddForm from "../Form/AddForm";
 import "./Color.css";
+import { useEffect } from "react";
 
 export default function Color({ color, onDelete, onChange, id }) {
   const [showDelete, setShowDelete] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (copied) {
+      const interval = setInterval(() => {
+        setCopied(false);
+      }, 2000);
+      return () => clearInterval(interval);
+    }
+  }, [copied]);
 
   const hider = !showForm ? "hider" : "";
 
@@ -14,8 +24,8 @@ export default function Color({ color, onDelete, onChange, id }) {
   const handleClipboard = async (content) => {
     try {
       const success = await navigator.clipboard.writeText(content);
-      // if (!success) throw new Error("shit");
-
+      // throw new Error("shit")
+      console.log(success)
       setCopied(true);
     } catch (error) {
       console.error("Clippy is sorry", error);
