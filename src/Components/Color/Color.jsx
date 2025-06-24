@@ -6,16 +6,16 @@ import { useEffect } from "react";
 export default function Color({ color, onDelete, onChange, id }) {
   const [showDelete, setShowDelete] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [copiedToClipboard, setCopied] = useState(false);
 
   useEffect(() => {
-    if (copied) {
+    if (copiedToClipboard) {
       const interval = setInterval(() => {
         setCopied(false);
       }, 2000);
       return () => clearInterval(interval);
     }
-  }, [copied]);
+  }, [copiedToClipboard]);
 
   const hider = !showForm ? "hider" : "";
 
@@ -24,8 +24,6 @@ export default function Color({ color, onDelete, onChange, id }) {
   const handleClipboard = async (content) => {
     try {
       const success = await navigator.clipboard.writeText(content);
-      // throw new Error("shit")
-      console.log(success)
       setCopied(true);
     } catch (error) {
       console.error("Clippy is sorry", error);
@@ -42,7 +40,7 @@ export default function Color({ color, onDelete, onChange, id }) {
     >
       <h3 className="color-card-headline">{color.hex}</h3>
       <button onClick={() => handleClipboard(color.hex)}>📋 copy </button>
-      <span hidden={!copied}>copied successfully</span>
+      <span hidden={!copiedToClipboard}>copied successfully</span>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       <AddForm classes={hider} handleAdd={onChange} id={id} />
