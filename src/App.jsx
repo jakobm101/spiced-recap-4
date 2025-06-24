@@ -4,7 +4,6 @@ import { uid } from "uid";
 import AddForm from "./Components/Form/AddForm";
 import Color from "./Components/Color/Color";
 import "./App.css";
-import { useState } from "react";
 
 function App() {
   const [colors, setColors] = useLocalStorageState('initialColors', {defaultValue: initialColors});
@@ -35,10 +34,6 @@ function App() {
   return (
     <>
       <h1>Theme Creator</h1>
-      <button onClick={() => changeColor(colors[0].id, "#00dd33")}>
-        {" "}
-        change color [0]{" "}
-      </button>
       <AddForm handleAdd={addColor} />
       {!colors.length && <h2>Add some colors ⭐️</h2>}
       {colors.map((color) => {
