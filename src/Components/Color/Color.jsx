@@ -5,10 +5,13 @@ import "./Color.css";
 export default function Color({ color, onDelete, onChange, id }) {
   const [showDelete, setShowDelete] = useState(false);
   const [showForm, setShowForm] = useState(false);
+
   const hider = !showForm ? "hider" : "";
 
   const handleShowDeleteMenu = () => setShowDelete(!showDelete);
   const handleShowForm = () => setShowForm(!showForm);
+  const handleClipboard = () => console.log('Yo');
+  
 
   return (
     <div
@@ -19,6 +22,7 @@ export default function Color({ color, onDelete, onChange, id }) {
       }}
     >
       <h3 className="color-card-headline">{color.hex}</h3>
+    <button onClick={handleClipboard}>📋 copy </button>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       <AddForm classes={hider} handleAdd={onChange} id={id} />
