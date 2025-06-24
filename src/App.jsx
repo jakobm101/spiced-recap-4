@@ -1,4 +1,5 @@
 import { initialColors } from "./lib/colors";
+import { uid } from "uid";
 import AddForm from "./Components/Color/AddForm";
 import Color from "./Components/Color/Color";
 import "./App.css";
@@ -8,7 +9,7 @@ function App() {
   const [colors, setColors] = useState(initialColors);
 
   const addColor = (
-    id = 1234,
+    id = uid(),
     role = "test",
     hex = "#345132",
     contrastText = "#ffffff"
@@ -23,7 +24,7 @@ function App() {
   return (
     <>
       <h1>Theme Creator</h1>
-      <AddForm handleAdd={addColor}/>
+      <AddForm handleAdd={addColor} />
       {colors.map((color) => {
         return <Color key={color.id} color={color} />;
       })}
