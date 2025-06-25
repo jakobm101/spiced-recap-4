@@ -77,11 +77,9 @@ function App() {
       }
       return theme;
     });
-    console.log(newThemes);
 
     setThemes(newThemes)
     setColors(newColors);
-    // ∆todo setThemes
   };
 
   return (
