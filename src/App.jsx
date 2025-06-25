@@ -19,10 +19,11 @@ function App() {
   );
 
   const addColor = (role, hex, contrastText, id = uid()) => {
-    setColors([
+    const newColors = [
       { id: id, role: role, hex: hex, contrastText: contrastText },
       ...colors,
-    ]);
+    ];
+    updateThemes(newColors, currentThemeId);
   };
 
   const removeColor = (id) => {
@@ -48,13 +49,13 @@ function App() {
         color.contrastText = contrastText;
       }
     });
-    const newThemes = themes.map(theme => {
-      if(theme.id === currentThemeId){
-        theme.colors = newColors
+    const newThemes = themes.map((theme) => {
+      if (theme.id === currentThemeId) {
+        theme.colors = newColors;
       }
-      return theme
-    })
-    setThemes(newThemes)
+      return theme;
+    });
+    setThemes(newThemes);
     setColors(newColors);
   };
 
@@ -67,6 +68,20 @@ function App() {
     const newTheme = themes.find((theme) => theme.id === currentId);
     setColors(newTheme.colors);
     setCurrentThemeId(newTheme.id);
+  };
+
+  const updateThemes = (newColors, themeId) => {
+    const newThemes = themes.map((theme) => {
+      if (theme.id === themeId) {
+        theme.colors = newColors
+      }
+      return theme;
+    });
+    console.log(newThemes);
+
+    setThemes(newThemes)
+    setColors(newColors);
+    // ∆todo setThemes
   };
 
   return (
