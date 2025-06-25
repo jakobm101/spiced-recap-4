@@ -20,18 +20,19 @@ import Color from "./Components/Color/Color";
 import "./App.css";
 
 function App() {
-  const [colors, setColors] = useLocalStorageState("Colors", {
+  /*const [colors, setColors] = useLocalStorageState("Colors", {
     defaultValue: initialColors,
-  });
+  });*/
   const [themes, setThemes] = useLocalStorageState("Themes", {
-    defaultValue: [{ id: "defaultID", name: "default", colors: colors }],
+    defaultValue: [{ id: "defaultID", name: "default", colors: initialColors }],
   });
   const [currentThemeId, setCurrentThemeId] = useLocalStorageState(
     "currentTheme",
     { defaultValue: "defaultID" }
   );
-  console.log('hi', currentThemeId);
-  
+
+  const currentTheme = themes.find((theme) => theme.id === currentThemeId);
+  const colors = currentTheme.colors;
 
   const addColor = (role, hex, contrastText, id = uid()) => {
     const newColors = [
@@ -66,7 +67,6 @@ function App() {
   const changeTheme = (e) => {
     const currentId = e.target.value;
     const newTheme = themes.find((theme) => theme.id === currentId);
-    setColors(newTheme.colors);
     setCurrentThemeId(newTheme.id);
   };
 
@@ -79,17 +79,14 @@ function App() {
     });
 
     setThemes(newThemes);
-    setColors(newColors);
   };
 
   const deleteTheme = () => {
-    const onFirstTheme = currentThemeId === themes[0].id
-    const nextTheme = onFirstTheme ? themes[1] : themes[0]
-    console.log({nextTheme})
+    const onFirstTheme = currentThemeId === themes[0].id;
+    const nextTheme = onFirstTheme ? themes[1] : themes[0];
     const newThemes = themes.filter((theme) => theme.id !== currentThemeId);
     setThemes(() => newThemes);
     setCurrentThemeId(nextTheme.id);
-    setColors(nextTheme.colors)
   };
 
   return (
