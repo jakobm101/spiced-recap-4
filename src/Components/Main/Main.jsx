@@ -1,10 +1,14 @@
 import Color from "../Color/Color";
 
-export default function Main({
-  colors,
-  currentThemeId,
-  updateThemes,
-}) {
+export default function Main({ themes, colors, currentThemeId, setThemes }) {
+  const updateThemes = (newColors, themeId) => {
+    const newThemes = themes.map((theme) => {
+      if (theme.id === themeId) theme.colors = newColors;
+      return theme;
+    });
+    setThemes(newThemes);
+  };
+
   const changeColor = (role, hex, contrastText, id) => {
     let newColors = [...colors];
     newColors.filter((color) => {

@@ -25,21 +25,17 @@ function App() {
       { id: id, role: role, hex: hex, contrastText: contrastText },
       ...colors,
     ];
-    updateThemes(newColors, currentThemeId);
+    const newThemes = themes.map((theme) => {
+      if (theme.id === currentThemeId) theme.colors = newColors;
+      return theme;
+    });
+    setThemes(newThemes);
   };
 
   const changeTheme = (e) => {
     const currentId = e.target.value;
     const newTheme = themes.find((theme) => theme.id === currentId);
     setCurrentThemeId(newTheme.id);
-  };
-
-  const updateThemes = (newColors, themeId) => {
-    const newThemes = themes.map((theme) => {
-      if (theme.id === themeId) theme.colors = newColors;
-      return theme;
-    });
-    setThemes(newThemes);
   };
 
   return (
@@ -58,9 +54,10 @@ function App() {
       </aside>
 
       <Main
+        themes={themes}
         colors={colors}
         currentThemeId={currentThemeId}
-        updateThemes={updateThemes}
+        setThemes={setThemes}
       />
     </section>
   );
