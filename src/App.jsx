@@ -41,15 +41,7 @@ function App() {
     const newTheme = themes.find((theme) => theme.id === currentId);
     setCurrentThemeId(newTheme.id);
   };
-
-  const renameTheme = (name) => {
-    const newThemes = themes.map((theme) => {
-      if (theme.id === currentThemeId) theme.name = name;
-      return theme;
-    });
-    setThemes(newThemes);
-  };
-
+  
   const updateThemes = (newColors, themeId) => {
     const newThemes = themes.map((theme) => {
       if (theme.id === themeId) {
@@ -68,7 +60,6 @@ function App() {
         <ThemeMenu
           changeTheme={changeTheme}
           addTheme={addTheme}
-          renameTheme={renameTheme}
           themes={themes}
           currentThemeId={currentThemeId}
           setThemes={setThemes}

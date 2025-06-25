@@ -6,7 +6,6 @@ export default function ThemeMenu({
   themes,
   currentThemeId,
   addTheme,
-  renameTheme,
   changeTheme,
   setThemes,
   setCurrentThemeId,
@@ -24,6 +23,15 @@ export default function ThemeMenu({
     setThemes(() => newThemes);
     setCurrentThemeId(nextTheme.id);
   };
+
+  const renameTheme = (name) => {
+    const newThemes = themes.map((theme) => {
+      if (theme.id === currentThemeId) theme.name = name;
+      return theme;
+    });
+    setThemes(newThemes);
+  };
+
 
 
   return (
