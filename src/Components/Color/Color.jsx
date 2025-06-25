@@ -22,6 +22,11 @@ export default function Color({ color, onDelete, onChange, id }) {
     }
   }, [copiedToClipboard]);
 
+  const handleAdd = (role, hex, contrast, id) => {
+    onChange(role, hex, contrast, id);
+    callContrastAPI(hex, contrast)
+    console.log('yo');
+  };
   const handleShowDeleteMenu = () => setShowDelete(!showDelete);
   const handleShowForm = () => setShowForm(!showForm);
   const handleClipboard = async (content) => {
@@ -71,7 +76,7 @@ export default function Color({ color, onDelete, onChange, id }) {
 
       <AddForm
         classes={!showForm ? "hider" : ""}
-        handleAdd={onChange}
+        handleAdd={handleAdd}
         id={id}
       />
       <button onClick={handleShowForm}>⚙️ edit</button>
