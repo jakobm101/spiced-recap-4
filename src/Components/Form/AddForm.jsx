@@ -17,7 +17,7 @@ export default function AddForm({ handleAdd, id, classes, colorObject }) {
       <Input value={colorObject?.role || ""} name={"role"} placeholder={"Primary Border Colour"} />
       <Input value={colorObject?.hex || ""} name={"hex"} color={true} placeholder={"#123123"} />
       <Input value={colorObject?.contrast || ""} name={"contrast"} color={true} placeholder={"#000000"} />
-      <button type="submit">submit</button>
+      <button type="submit">💾 Submit</button>
     </form>
   );
 }

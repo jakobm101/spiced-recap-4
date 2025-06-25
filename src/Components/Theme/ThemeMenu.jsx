@@ -47,7 +47,7 @@ export default function ThemeMenu({
         onClick={deleteTheme}
         disabled={currentThemeId === "defaultID"}
       >
-        Delete
+        🗑️ Delete
       </button>
     </form>
   );

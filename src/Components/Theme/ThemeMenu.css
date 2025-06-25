@@ -28,10 +28,8 @@ option {
 #theme-menu .btn {
     width: fit-content;
     margin: 0;
-    border-color: blue;
 }
 
 #theme-menu__delete {
     margin-top: 20px;
-    border-color:saddlebrown;
 }
