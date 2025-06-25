@@ -1,3 +1,16 @@
+/**
+ * todo:
+ * -- bugfix select element
+ * -- Themes
+ * -- -- Delete
+ * -- -- Change Name
+ *
+ *
+ * //////Bonus:
+ * -- refactor Prop levels
+ * -- CSS
+ */
+
 import { initialColors } from "./lib/colors";
 import ThemeMenu from "./Components/Theme/ThemeMenu";
 import useLocalStorageState from "use-local-storage-state";
@@ -28,16 +41,7 @@ function App() {
 
   const removeColor = (id) => {
     const newColors = colors.filter((color) => color.id !== id);
-    const newThemes = themes.map((theme) => {
-      if (theme.id === currentThemeId) {
-        theme.colors = newColors;
-        console.log("insane");
-      }
-
-      return theme;
-    });
-    setThemes(newThemes);
-    setColors(newColors);
+    updateThemes(newColors, currentThemeId);
   };
 
   const changeColor = (role, hex, contrastText, id) => {
@@ -49,7 +53,7 @@ function App() {
         color.contrastText = contrastText;
       }
     });
-    updateThemes(newColors, currentThemeId)
+    updateThemes(newColors, currentThemeId);
   };
 
   const addTheme = (_, themeName = "new Theme", themeColors = colors) => {
@@ -66,12 +70,19 @@ function App() {
   const updateThemes = (newColors, themeId) => {
     const newThemes = themes.map((theme) => {
       if (theme.id === themeId) {
-        theme.colors = newColors
+        theme.colors = newColors;
       }
       return theme;
     });
 
-    setThemes(newThemes)
+    setThemes(newThemes);
+    setColors(newColors);
+  };
+
+  const deleteTheme = () => {
+    const newThemes = themes.filter((theme) => theme.id !== currentThemeId);
+    setThemes(() => newThemes);
+    const newColors = themes[0].colors;
     setColors(newColors);
   };
 
@@ -81,6 +92,7 @@ function App() {
       <ThemeMenu
         changeTheme={changeTheme}
         addTheme={addTheme}
+        deleteTheme={deleteTheme}
         themes={themes}
         currentThemeId={currentThemeId}
       />
