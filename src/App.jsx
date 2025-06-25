@@ -7,13 +7,16 @@ import Color from "./Components/Color/Color";
 import "./App.css";
 
 function App() {
-  const [colors, setColors] = useLocalStorageState("initialColors", {
+  const [colors, setColors] = useLocalStorageState("Colors", {
     defaultValue: initialColors,
   });
-  const [themes, setThemes] = useLocalStorageState("initialThemes", {
+  const [themes, setThemes] = useLocalStorageState("Themes", {
     defaultValue: [{ id: "defaultID", name: "default", colors: colors }],
   });
-  
+  const [currentThemeId, setCurrentThemeId] = useLocalStorageState(
+    "currentTheme",
+    { defaultValue: "defaultID" }
+  );
 
   const addColor = (role, hex, contrastText, id = uid()) => {
     setColors([
@@ -36,6 +39,7 @@ function App() {
       }
     });
     setColors(newColors);
+    
   };
 
   const addTheme = (_, themeName = "new Theme", themeColors = colors) => {
@@ -47,20 +51,20 @@ function App() {
     console.log("current col", colors);
 
     const currentId = e.target.value;
-    const newTheme = themes.find(theme => theme.id === currentId)
+    const newTheme = themes.find((theme) => theme.id === currentId);
     console.log("new theme", newTheme.colors);
-    setColors(newTheme.colors)
-    
-    
+    setColors(newTheme.colors);
+    setCurrentThemeId(newTheme.id);
   };
 
   return (
     <>
       <h1>Theme Creator</h1>
-      <ThemeMenu
+     <ThemeMenu
         changeTheme={changeTheme}
         addTheme={addTheme}
         themes={themes}
+        currentThemeId={currentThemeId}
       />
       <AddForm handleAdd={addColor} />
 

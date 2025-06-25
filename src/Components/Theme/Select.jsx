@@ -1,6 +1,6 @@
 import { uid } from "uid";
 
-export default function Select({ themes , changeTheme }) {
+export default function Select({ themes , changeTheme , currentThemeId }) {
   return (
     <>
       <select name="themes" id="themes-select" onChange={changeTheme}>
@@ -8,7 +8,7 @@ export default function Select({ themes , changeTheme }) {
           console.log(theme);
           
           return (
-            <option key={uid()} value={theme.id}>
+            <option key={uid()} value={theme.id} selected={theme.id === currentThemeId}>
               {theme.name}
             </option>
           );
