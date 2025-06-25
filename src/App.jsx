@@ -30,6 +30,8 @@ function App() {
     "currentTheme",
     { defaultValue: "defaultID" }
   );
+  console.log('hi', currentThemeId);
+  
 
   const addColor = (role, hex, contrastText, id = uid()) => {
     const newColors = [
@@ -81,10 +83,13 @@ function App() {
   };
 
   const deleteTheme = () => {
-
+    const onFirstTheme = currentThemeId === themes[0].id
+    const nextTheme = onFirstTheme ? themes[1] : themes[0]
+    console.log({nextTheme})
     const newThemes = themes.filter((theme) => theme.id !== currentThemeId);
     setThemes(() => newThemes);
-    setCurrentThemeId(themes[0].id);
+    setCurrentThemeId(nextTheme.id);
+    setColors(nextTheme.colors)
   };
 
   return (
