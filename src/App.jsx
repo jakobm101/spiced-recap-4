@@ -1,30 +1,16 @@
-/**
- * todo:
- * -- bugfix select element
- * -- Themes
- * -- -- Delete
- * -- -- Change Name
- *
- *
- * //////Bonus:
- * -- refactor Prop levels
- * -- CSS
- */
-
-import { initialColors } from "./lib/colors";
-import ThemeMenu from "./Components/Theme/ThemeMenu";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
+
+import ThemeMenu from "./Components/Theme/ThemeMenu";
 import AddForm from "./Components/Form/AddForm";
 import Color from "./Components/Color/Color";
+
+import { initialColors } from "./lib/colors";
 import "./App.css";
 
 function App() {
-  /*const [colors, setColors] = useLocalStorageState("Colors", {
-    defaultValue: initialColors,
-  });*/
   const [themes, setThemes] = useLocalStorageState("Themes", {
-    defaultValue: [{ id: "defaultID", name: "default", colors: initialColors }],
+    defaultValue: [{ id: "defaultID", name: "Default", colors: initialColors }],
   });
   const [currentThemeId, setCurrentThemeId] = useLocalStorageState(
     "currentTheme",
@@ -88,7 +74,6 @@ function App() {
       }
       return theme;
     });
-
     setThemes(newThemes);
   };
 
