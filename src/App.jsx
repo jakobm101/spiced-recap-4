@@ -56,8 +56,12 @@ function App() {
     updateThemes(newColors, currentThemeId);
   };
 
-  const addTheme = (_, themeName = uid(), themeColors = colors) => {
-    setThemes([{ id: themeName, name: themeName, colors: themeColors }, ...themes]);
+  const addTheme = (_, id = uid(), themeColors = colors) => {
+    setThemes(() => [
+      { id: id, name: id, colors: themeColors },
+      ...themes,
+    ]);
+    setCurrentThemeId(id);
   };
 
   const changeTheme = (e) => {
