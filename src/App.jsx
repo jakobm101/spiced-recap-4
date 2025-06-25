@@ -28,20 +28,12 @@ function App() {
     updateThemes(newColors, currentThemeId);
   };
 
-  const addTheme = (_, name, id = uid(), themeColors = colors) => {
-    setThemes(() => [
-      { id: id, name: name || id, colors: themeColors },
-      ...themes,
-    ]);
-    setCurrentThemeId(id);
-  };
-
   const changeTheme = (e) => {
     const currentId = e.target.value;
     const newTheme = themes.find((theme) => theme.id === currentId);
     setCurrentThemeId(newTheme.id);
   };
-  
+
   const updateThemes = (newColors, themeId) => {
     const newThemes = themes.map((theme) => {
       if (theme.id === themeId) {
@@ -52,14 +44,13 @@ function App() {
     setThemes(newThemes);
   };
 
-
   return (
     <section>
       <aside>
         <h1>Theme Creator</h1>
         <ThemeMenu
+          colors={colors}
           changeTheme={changeTheme}
-          addTheme={addTheme}
           themes={themes}
           currentThemeId={currentThemeId}
           setThemes={setThemes}

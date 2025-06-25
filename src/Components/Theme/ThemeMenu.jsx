@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./ThemeMenu.css";
 import Select from "./Select";
+import { uid } from "uid";
 
 export default function ThemeMenu({
+  colors,
   themes,
   currentThemeId,
-  addTheme,
   changeTheme,
   setThemes,
   setCurrentThemeId,
@@ -15,7 +16,15 @@ export default function ThemeMenu({
   const handleAdd = (e) => addTheme(e, name);
   const handleNameInput = (e) => setName(e.target.value);
   const handleRename = () => renameTheme(name);
-    
+
+  const addTheme = (_, name, id = uid(), themeColors = colors) => {
+    setThemes(() => [
+      { id: id, name: name || id, colors: themeColors },
+      ...themes,
+    ]);
+    setCurrentThemeId(id);
+  };
+
   const deleteTheme = () => {
     const onFirstTheme = currentThemeId === themes[0].id;
     const nextTheme = onFirstTheme ? themes[1] : themes[0];
@@ -31,8 +40,6 @@ export default function ThemeMenu({
     });
     setThemes(newThemes);
   };
-
-
 
   return (
     <form id="theme-menu">
