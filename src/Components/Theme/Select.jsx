@@ -5,8 +5,10 @@ export default function Select({ themes , changeTheme }) {
     <>
       <select name="themes" id="themes-select" onChange={changeTheme}>
         {themes.map((theme) => {
+          console.log(theme);
+          
           return (
-            <option key={uid()} value={theme.name}>
+            <option key={uid()} value={theme.id}>
               {theme.name}
             </option>
           );

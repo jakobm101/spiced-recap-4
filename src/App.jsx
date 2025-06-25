@@ -11,7 +11,7 @@ function App() {
     defaultValue: initialColors,
   });
   const [themes, setThemes] = useLocalStorageState("initialThemes", {
-    defaultValue: [{ id:'default', name: "default", colors: colors }],
+    defaultValue: [{ id:'defaultID', name: "default", colors: colors }],
   });
 
   const addColor = (role, hex, contrastText, id = uid()) => {
