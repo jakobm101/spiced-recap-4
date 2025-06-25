@@ -3,7 +3,7 @@ import { uid } from "uid";
 
 import ThemeMenu from "./Components/Theme/ThemeMenu";
 import AddForm from "./Components/Form/AddForm";
-import Color from "./Components/Color/Color";
+import Main from "./Components/Main/Main";
 
 import { initialColors } from "./lib/colors";
 import "./App.css";
@@ -100,20 +100,13 @@ function App() {
         <AddForm handleAdd={addColor} />
       </aside>
 
-      <main>
-        {!colors.length && <h2>Add some colors ⭐️</h2>}
-        {colors.map((color) => {
-          return (
-            <Color
-              onDelete={() => removeColor(color.id)}
-              key={color.id}
-              id={color.id}
-              color={color}
-              onChange={changeColor}
-            />
-          );
-        })}
-      </main>
+      <Main
+        colors={colors}
+        removeColor={removeColor}
+        changeColor={changeColor}
+        currentThemeId={currentThemeId}
+        updateThemes={updateThemes}
+      />
     </section>
   );
 }
