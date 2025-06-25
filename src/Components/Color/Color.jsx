@@ -60,7 +60,7 @@ export default function Color({ color, onDelete, onChange, id }) {
       <h3 className="color-card-headline">{color.hex}</h3>
       <p>
         {contrastQuotient &&
-          `The contrast quotient is ${contrastQuotient}`}
+          `The contrast quotient is ${typeof contrastQuotient === 'string' ? contrastQuotient : 'loading'}`}
       </p>
       <button onClick={() => handleClipboard(color.hex)}>📋 copy </button>
       <span hidden={!copiedToClipboard}>copied successfully</span>
