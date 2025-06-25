@@ -20,7 +20,7 @@ export default function ThemeMenu({
         currentThemeId={currentThemeId}
       />
       <button onClick={handleAdd}>Add</button>
-      <button onClick={deleteTheme} disabled={currentThemeId === 'defaultID' ? true : false}>Delete</button>
+      <button onClick={deleteTheme} disabled={currentThemeId === 'defaultID'}>Delete</button>
     </>
   );
 }
