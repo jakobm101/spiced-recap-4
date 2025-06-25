@@ -2,10 +2,21 @@ import Color from "../Color/Color";
 
 export default function Main({
   colors,
-  changeColor,
   currentThemeId,
   updateThemes,
 }) {
+  const changeColor = (role, hex, contrastText, id) => {
+    let newColors = [...colors];
+    newColors.filter((color) => {
+      if (color.id === id) {
+        color.role = role;
+        color.hex = hex;
+        color.contrastText = contrastText;
+      }
+    });
+    updateThemes(newColors, currentThemeId);
+  };
+
   const removeColor = (id) => {
     const newColors = colors.filter((color) => color.id !== id);
     updateThemes(newColors, currentThemeId);

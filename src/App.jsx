@@ -28,18 +28,6 @@ function App() {
     updateThemes(newColors, currentThemeId);
   };
 
-  const changeColor = (role, hex, contrastText, id) => {
-    let newColors = [...colors];
-    newColors.filter((color) => {
-      if (color.id === id) {
-        color.role = role;
-        color.hex = hex;
-        color.contrastText = contrastText;
-      }
-    });
-    updateThemes(newColors, currentThemeId);
-  };
-
   const addTheme = (_, name, id = uid(), themeColors = colors) => {
     setThemes(() => [
       { id: id, name: name || id, colors: themeColors },
