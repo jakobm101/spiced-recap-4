@@ -57,10 +57,7 @@ function App() {
   };
 
   const addTheme = (_, id = uid(), themeColors = colors) => {
-    setThemes(() => [
-      { id: id, name: id, colors: themeColors },
-      ...themes,
-    ]);
+    setThemes(() => [{ id: id, name: id, colors: themeColors }, ...themes]);
     setCurrentThemeId(id);
   };
 
@@ -84,10 +81,10 @@ function App() {
   };
 
   const deleteTheme = () => {
+
     const newThemes = themes.filter((theme) => theme.id !== currentThemeId);
     setThemes(() => newThemes);
-    const newColors = themes[0].colors;
-    setColors(newColors);
+    setCurrentThemeId(themes[0].id);
   };
 
   return (
