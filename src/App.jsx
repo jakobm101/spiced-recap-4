@@ -28,11 +28,6 @@ function App() {
     updateThemes(newColors, currentThemeId);
   };
 
-  const removeColor = (id) => {
-    const newColors = colors.filter((color) => color.id !== id);
-    updateThemes(newColors, currentThemeId);
-  };
-
   const changeColor = (role, hex, contrastText, id) => {
     let newColors = [...colors];
     newColors.filter((color) => {
@@ -102,7 +97,6 @@ function App() {
 
       <Main
         colors={colors}
-        removeColor={removeColor}
         changeColor={changeColor}
         currentThemeId={currentThemeId}
         updateThemes={updateThemes}
