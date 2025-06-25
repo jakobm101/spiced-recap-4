@@ -11,8 +11,9 @@ function App() {
     defaultValue: initialColors,
   });
   const [themes, setThemes] = useLocalStorageState("initialThemes", {
-    defaultValue: [{ id:'defaultID', name: "default", colors: colors }],
+    defaultValue: [{ id: "defaultID", name: "default", colors: colors }],
   });
+  
 
   const addColor = (role, hex, contrastText, id = uid()) => {
     setColors([
@@ -38,20 +39,29 @@ function App() {
   };
 
   const addTheme = (_, themeName = "new Theme", themeColors = colors) => {
-    setThemes([{id: uid(), name: themeName, colors: themeColors }, ...themes]);
+    setThemes([{ id: uid(), name: themeName, colors: themeColors }, ...themes]);
     console.log(themes);
   };
 
   const changeTheme = (e) => {
-    console.log(e.target.value);
+    console.log("current col", colors);
 
+    const currentId = e.target.value;
+    const newTheme = themes.find(theme => theme.id === currentId)
+    console.log("new theme", newTheme.colors);
+    setColors(newTheme.colors)
     
-  }
+    
+  };
 
   return (
     <>
       <h1>Theme Creator</h1>
-      <ThemeMenu changeTheme={changeTheme} addTheme={addTheme} themes={themes} />
+      <ThemeMenu
+        changeTheme={changeTheme}
+        addTheme={addTheme}
+        themes={themes}
+      />
       <AddForm handleAdd={addColor} />
 
       {!colors.length && <h2>Add some colors ⭐️</h2>}
