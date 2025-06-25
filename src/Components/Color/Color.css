@@ -1,6 +1,10 @@
 .color-card {
   width: 100%;
   padding: 20px;
+  border-bottom: black 4px solid;
+  button {
+    font-weight: bold;
+  }
 }
 
 .color-card-headline {

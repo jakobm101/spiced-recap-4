@@ -51,6 +51,8 @@ button {
   border: 2px solid;
   border-radius: 5px;
   box-shadow: 0 2px;
+  text-transform: capitalize;
+  font-weight: bold;
 }
 
 input:nth-child(3) {
@@ -62,4 +64,14 @@ input:nth-child(3) {
 
 .hider {
   display: none;
+}
+
+input#role {
+  font-family: sans-serif;
+  letter-spacing: 0.6px;
+}
+
+label {
+  text-transform: capitalize;
+  font-family: sans-serif;
 }
