@@ -13,11 +13,7 @@ export default function ThemeMenu({
 
   const handleAdd = (e) => addTheme(e, name);
   const handleNameInput = (e) => setName(e.target.value);
-
-  const handleRename = () => {
-    console.log("sane");
-    renameTheme(name)
-  };
+  const handleRename = () => renameTheme(name);
 
   return (
     <form>
