@@ -101,7 +101,7 @@ function App() {
   };
 
   return (
-    <container>
+    <section>
       <aside>
         <h1>Theme Creator</h1>
         <ThemeMenu
@@ -129,7 +129,7 @@ function App() {
           );
         })}
       </main>
-    </container>
+    </section>
   );
 }
 
