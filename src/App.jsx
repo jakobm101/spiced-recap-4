@@ -101,31 +101,35 @@ function App() {
   };
 
   return (
-    <>
-      <h1>Theme Creator</h1>
-      <ThemeMenu
-        changeTheme={changeTheme}
-        addTheme={addTheme}
-        renameTheme={renameTheme}
-        deleteTheme={deleteTheme}
-        themes={themes}
-        currentThemeId={currentThemeId}
-      />
-      <AddForm handleAdd={addColor} />
+    <section>
+      <aside>
+        <h1>Theme Creator</h1>
+        <ThemeMenu
+          changeTheme={changeTheme}
+          addTheme={addTheme}
+          renameTheme={renameTheme}
+          deleteTheme={deleteTheme}
+          themes={themes}
+          currentThemeId={currentThemeId}
+        />
+        <AddForm handleAdd={addColor} />
+      </aside>
 
-      {!colors.length && <h2>Add some colors ⭐️</h2>}
-      {colors.map((color) => {
-        return (
-          <Color
-            onDelete={() => removeColor(color.id)}
-            key={color.id}
-            id={color.id}
-            color={color}
-            onChange={changeColor}
-          />
-        );
-      })}
-    </>
+      <main>
+        {!colors.length && <h2>Add some colors ⭐️</h2>}
+        {colors.map((color) => {
+          return (
+            <Color
+              onDelete={() => removeColor(color.id)}
+              key={color.id}
+              id={color.id}
+              color={color}
+              onChange={changeColor}
+            />
+          );
+        })}
+      </main>
+    </section>
   );
 }
 

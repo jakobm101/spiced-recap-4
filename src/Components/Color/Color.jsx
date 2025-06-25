@@ -9,9 +9,9 @@ export default function Color({ color, onDelete, onChange, id }) {
   const [copiedToClipboard, setCopied] = useState(false);
   const [contrastQuotient, setContrastQuotient] = useState("");
 
-  useEffect( () => {
-    setContrastQuotient(callContrastAPI(color.hex, color.contrastText))
-  },[]);
+  useEffect(() => {
+    setContrastQuotient(callContrastAPI(color.hex, color.contrastText));
+  }, []);
 
   useEffect(() => {
     if (copiedToClipboard) {
@@ -22,6 +22,11 @@ export default function Color({ color, onDelete, onChange, id }) {
     }
   }, [copiedToClipboard]);
 
+  const handleAdd = (role, hex, contrast, id) => {
+    onChange(role, hex, contrast, id);
+    callContrastAPI(hex, contrast)
+    console.log('yo');
+  };
   const handleShowDeleteMenu = () => setShowDelete(!showDelete);
   const handleShowForm = () => setShowForm(!showForm);
   const handleClipboard = async (content) => {
@@ -42,7 +47,7 @@ export default function Color({ color, onDelete, onChange, id }) {
       })
         .then((response) => response.json())
         .then((json) => {
-          setContrastQuotient(json.overall)
+          setContrastQuotient(json.overall);
         });
     } catch (error) {
       console.error(error);
@@ -57,23 +62,26 @@ export default function Color({ color, onDelete, onChange, id }) {
         color: color.contrastText,
       }}
     >
+      <h4>{color.role}</h4>
       <h3 className="color-card-headline">{color.hex}</h3>
+      <button onClick={() => handleClipboard(color.hex)}>📋 copy hex</button>
+      <span hidden={!copiedToClipboard}>copied successfully</span>
+      <p>contrast: {color.contrastText}</p>
       <p>
         {contrastQuotient &&
-          `The contrast quotient is ${typeof contrastQuotient === 'string' ? contrastQuotient : 'loading'}`}
+          `The contrast quotient is ${
+            typeof contrastQuotient === "string" ? contrastQuotient : "loading"
+          }`}
       </p>
-      <button onClick={() => handleClipboard(color.hex)}>📋 copy </button>
-      <span hidden={!copiedToClipboard}>copied successfully</span>
-      <h4>{color.role}</h4>
-      <p>contrast: {color.contrastText}</p>
+
       <AddForm
         classes={!showForm ? "hider" : ""}
-        handleAdd={onChange}
+        handleAdd={handleAdd}
         id={id}
       />
       <button onClick={handleShowForm}>⚙️ edit</button>
       <p className="color-card-deletion-menu__p">
-        {showDelete ? "Are you sure?" : ""}
+        {showDelete ? ` Are you sure? ` : ""}
       </p>
       <button onClick={handleShowDeleteMenu}>
         {!showDelete ? "🗑️ delete" : "😱 Cancel "}

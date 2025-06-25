@@ -1,16 +1,25 @@
 .color-card {
-  margin: 0px 10px;
-  padding: 5px;
+  width: 100%;
+  padding: 20px;
 }
 
 .color-card-headline {
-  display: inline;
-  padding: 2px 6px;
+  display: inline-block;
+  padding: 10px 16px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: larger;
   background: black;
   color: white;
+  border-radius: 10px;
+  width: 148px;
+  text-align: center;
 }
 
 .color-card-deletion-menu__p {
   display: inline;
-  padding: 10px;
+}
+
+h4 {
+  font-size: xx-large;
 }
