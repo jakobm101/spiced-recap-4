@@ -1,4 +1,18 @@
+/**
+ * todo:
+ * -- bugfix select element
+ * -- Themes
+ * -- -- Delete
+ * -- -- Change Name
+ *
+ *
+ * //////Bonus:
+ * -- refactor Prop levels
+ * -- CSS
+ */
+
 import { initialColors } from "./lib/colors";
+import ThemeMenu from "./Components/Theme/ThemeMenu";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 import AddForm from "./Components/Form/AddForm";
@@ -6,17 +20,31 @@ import Color from "./Components/Color/Color";
 import "./App.css";
 
 function App() {
-  const [colors, setColors] = useLocalStorageState('initialColors', {defaultValue: initialColors});
+  /*const [colors, setColors] = useLocalStorageState("Colors", {
+    defaultValue: initialColors,
+  });*/
+  const [themes, setThemes] = useLocalStorageState("Themes", {
+    defaultValue: [{ id: "defaultID", name: "default", colors: initialColors }],
+  });
+  const [currentThemeId, setCurrentThemeId] = useLocalStorageState(
+    "currentTheme",
+    { defaultValue: "defaultID" }
+  );
+
+  const currentTheme = themes.find((theme) => theme.id === currentThemeId);
+  const colors = currentTheme.colors;
 
   const addColor = (role, hex, contrastText, id = uid()) => {
-    setColors([
+    const newColors = [
       { id: id, role: role, hex: hex, contrastText: contrastText },
       ...colors,
-    ]);
+    ];
+    updateThemes(newColors, currentThemeId);
   };
 
   const removeColor = (id) => {
-    setColors(colors.filter((color) => color.id !== id));
+    const newColors = colors.filter((color) => color.id !== id);
+    updateThemes(newColors, currentThemeId);
   };
 
   const changeColor = (role, hex, contrastText, id) => {
@@ -28,13 +56,63 @@ function App() {
         color.contrastText = contrastText;
       }
     });
-    setColors(newColors);
+    updateThemes(newColors, currentThemeId);
+  };
+
+  const addTheme = (_, name, id = uid(), themeColors = colors) => {
+    setThemes(() => [
+      { id: id, name: name || id, colors: themeColors },
+      ...themes,
+    ]);
+    setCurrentThemeId(id);
+  };
+
+  const changeTheme = (e) => {
+    const currentId = e.target.value;
+    const newTheme = themes.find((theme) => theme.id === currentId);
+    setCurrentThemeId(newTheme.id);
+  };
+
+  const renameTheme = (name) => {
+    const newThemes = themes.map((theme) => {
+      if (theme.id === currentThemeId) theme.name = name;
+      return theme;
+    });
+    setThemes(newThemes);
+  };
+
+  const updateThemes = (newColors, themeId) => {
+    const newThemes = themes.map((theme) => {
+      if (theme.id === themeId) {
+        theme.colors = newColors;
+      }
+      return theme;
+    });
+
+    setThemes(newThemes);
+  };
+
+  const deleteTheme = () => {
+    const onFirstTheme = currentThemeId === themes[0].id;
+    const nextTheme = onFirstTheme ? themes[1] : themes[0];
+    const newThemes = themes.filter((theme) => theme.id !== currentThemeId);
+    setThemes(() => newThemes);
+    setCurrentThemeId(nextTheme.id);
   };
 
   return (
     <>
       <h1>Theme Creator</h1>
+      <ThemeMenu
+        changeTheme={changeTheme}
+        addTheme={addTheme}
+        renameTheme={renameTheme}
+        deleteTheme={deleteTheme}
+        themes={themes}
+        currentThemeId={currentThemeId}
+      />
       <AddForm handleAdd={addColor} />
+
       {!colors.length && <h2>Add some colors ⭐️</h2>}
       {colors.map((color) => {
         return (

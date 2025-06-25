@@ -1,6 +1,7 @@
 # Todos
-## 1 add color
-
+- [ ] Refactor Themes Updating
+  - [ ] adding color should update themes
+  - [ ] deleting, changing and adding color should call new function: updateTheme
 
 # Recap Project 4: Theme Creator
 In this project, we will create an Color Theme Creator app.

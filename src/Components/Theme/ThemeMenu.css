@@ -1,0 +1,31 @@
+#theme-menu {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+select {
+    width: 150px;
+    padding-left: 5px;
+}
+
+option {
+    font-size: larger;
+}
+
+#nameInput {
+    width: 300px;
+    text-align: left;
+    margin-top: 20px;
+    padding-left: 5px;
+}
+
+#theme-menu .btn {
+    width: fit-content;
+    margin: 0;
+    border-color: blue;
+}
+
+#theme-menu__delete {
+    margin-top: 20px;
+    border-color:saddlebrown;
+}
