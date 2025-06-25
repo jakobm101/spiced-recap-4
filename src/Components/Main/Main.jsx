@@ -37,6 +37,10 @@ export default function Main({ themes, colors, currentThemeId, setThemes }) {
             id={color.id}
             color={color}
             changeColor={changeColor}
+            themes={themes}
+            colors={colors}
+            currentThemeId={currentThemeId}
+            setThemes={setThemes}
           />
         );
       })}

@@ -2,23 +2,45 @@ import Input from "./Input";
 import "./Form.css";
 import { uid } from "uid";
 
-export default function AddForm({ handleAdd, id, classes, colorObject }) {
+export default function AddForm({
+  id,
+  classes,
+  colorObject,
+  setThemes,
+  themes,
+  colors,
+  currentThemeId,
+}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
     let [role, hex, contrast] = ["role", "hex", "contrast"].map((it) =>
       data.get(it)
     );
-    // handleAdd(role || "⭐️", hex || "#ffffff", contrast || "#000000", id || uid());
     const colorObject = {
       role: role || "⭐️",
       hex: hex || "#ffffff",
       contrastText: contrast || "#000000",
       id: id || uid(),
     };
-    console.log("handleSubmit");
-    
-    handleAdd(colorObject);
+    handleAddToThemes(colorObject);
+  };
+
+  const handleAddToThemes = (colorObject) => {
+    const idExists = colors.find((color) => color.id === colorObject.id);
+    let newColors = [];
+    if (idExists) {
+      newColors = colors.map((color) =>
+        color.id === colorObject.id ? colorObject : color
+      );
+    } else {
+      newColors = [colorObject, ...colors];
+    }
+    const newThemes = themes.map((theme) => {
+      if (theme.id === currentThemeId) theme.colors = newColors;
+      return theme;
+    });
+    setThemes(newThemes);
   };
 
   return (

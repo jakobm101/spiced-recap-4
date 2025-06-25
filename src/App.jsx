@@ -19,16 +19,6 @@ function App() {
   const currentTheme = themes.find((theme) => theme.id === currentThemeId);
   const colors = currentTheme.colors;
 
-  const addColor = (colorObject) => {
-    console.log("App.jsx addColor", colorObject);
-    const newColors = [colorObject, ...colors];
-    const newThemes = themes.map((theme) => {
-      if (theme.id === currentThemeId) theme.colors = newColors;
-      return theme;
-    });
-    setThemes(newThemes);
-  };
-
   return (
     <section>
       <aside>
@@ -40,7 +30,12 @@ function App() {
           setThemes={setThemes}
           setCurrentThemeId={setCurrentThemeId}
         />
-        <AddForm handleAdd={addColor} />
+        <AddForm
+          themes={themes}
+          colors={colors}
+          currentThemeId={currentThemeId}
+          setThemes={setThemes}
+        />
       </aside>
 
       <Main

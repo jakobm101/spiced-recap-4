@@ -3,7 +3,7 @@ import AddForm from "../Form/AddForm";
 import "./Color.css";
 import { useEffect } from "react";
 
-export default function Color({ color, onDelete, changeColor, id }) {
+export default function Color({ color, onDelete, changeColor, id, setThemes, themes, colors, currentThemeId }) {
   const [showDelete, setShowDelete] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [copiedToClipboard, setCopied] = useState(false);
@@ -81,6 +81,10 @@ export default function Color({ color, onDelete, changeColor, id }) {
         handleAdd={handleAdd}
         id={id}
         colorObject={color}
+        themes={themes}
+        colors={colors}
+        currentThemeId={currentThemeId}
+        setThemes={setThemes}
       />
       <button onClick={handleShowForm}>⚙️ edit</button>
       <p className="color-card-deletion-menu__p">
