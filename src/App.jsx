@@ -59,8 +59,11 @@ function App() {
     updateThemes(newColors, currentThemeId);
   };
 
-  const addTheme = (_, id = uid(), themeColors = colors) => {
-    setThemes(() => [{ id: id, name: id, colors: themeColors }, ...themes]);
+  const addTheme = (_, name, id = uid(), themeColors = colors) => {
+    setThemes(() => [
+      { id: id, name: name || id, colors: themeColors },
+      ...themes,
+    ]);
     setCurrentThemeId(id);
   };
 
@@ -68,6 +71,14 @@ function App() {
     const currentId = e.target.value;
     const newTheme = themes.find((theme) => theme.id === currentId);
     setCurrentThemeId(newTheme.id);
+  };
+
+  const renameTheme = (name) => {
+    const newThemes = themes.map((theme) => {
+      if (theme.id === currentThemeId) theme.name = name;
+      return theme;
+    });
+    setThemes(newThemes);
   };
 
   const updateThemes = (newColors, themeId) => {
@@ -95,6 +106,7 @@ function App() {
       <ThemeMenu
         changeTheme={changeTheme}
         addTheme={addTheme}
+        renameTheme={renameTheme}
         deleteTheme={deleteTheme}
         themes={themes}
         currentThemeId={currentThemeId}

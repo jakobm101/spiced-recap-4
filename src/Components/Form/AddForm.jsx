@@ -1,7 +1,7 @@
 import Input from "./Input";
-import './Form.css'
+import "./Form.css";
 
-export default function AddForm({ handleAdd, id, classes}) {
+export default function AddForm({ handleAdd, id, classes }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -13,6 +13,7 @@ export default function AddForm({ handleAdd, id, classes}) {
 
   return (
     <form onSubmit={handleSubmit} className={classes}>
+      <h2>Add new color to current theme</h2>
       <Input name={"role"} placeholder={"Primary Border Colour"} />
       <Input name={"hex"} color={true} placeholder={"#123123"} />
       <Input name={"contrast"} color={true} placeholder={"#000000"} />
