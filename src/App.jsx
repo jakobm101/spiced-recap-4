@@ -26,7 +26,17 @@ function App() {
   };
 
   const removeColor = (id) => {
-    setColors(colors.filter((color) => color.id !== id));
+    const newColors = colors.filter((color) => color.id !== id);
+    const newThemes = themes.map((theme) => {
+      if (theme.id === currentThemeId) {
+        theme.colors = newColors;
+        console.log("insane");
+      }
+
+      return theme;
+    });
+    setThemes(newThemes);
+    setColors(newColors);
   };
 
   const changeColor = (role, hex, contrastText, id) => {
@@ -38,21 +48,23 @@ function App() {
         color.contrastText = contrastText;
       }
     });
+    const newThemes = themes.map(theme => {
+      if(theme.id === currentThemeId){
+        theme.colors = newColors
+      }
+      return theme
+    })
+    setThemes(newThemes)
     setColors(newColors);
-    
   };
 
   const addTheme = (_, themeName = "new Theme", themeColors = colors) => {
     setThemes([{ id: uid(), name: themeName, colors: themeColors }, ...themes]);
-    console.log(themes);
   };
 
   const changeTheme = (e) => {
-    console.log("current col", colors);
-
     const currentId = e.target.value;
     const newTheme = themes.find((theme) => theme.id === currentId);
-    console.log("new theme", newTheme.colors);
     setColors(newTheme.colors);
     setCurrentThemeId(newTheme.id);
   };
@@ -60,7 +72,7 @@ function App() {
   return (
     <>
       <h1>Theme Creator</h1>
-     <ThemeMenu
+      <ThemeMenu
         changeTheme={changeTheme}
         addTheme={addTheme}
         themes={themes}
