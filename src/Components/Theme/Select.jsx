@@ -1,12 +1,17 @@
 import { uid } from "uid";
 
-export default function Select({ themes, changeTheme, currentThemeId, value }) {
+export default function Select({ themes, changeTheme, currentThemeId}) {
+  const handleSelection = (e) => {
+    console.log("handling", e);
+
+    changeTheme(e);
+  };
   return (
     <>
       <select
         name="themes"
         id="themes-select"
-        onChange={changeTheme}
+        onChange={handleSelection}
         value={currentThemeId}
       >
         {themes.map((theme) => {
