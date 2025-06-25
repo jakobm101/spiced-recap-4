@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./ThemeMenu.css";
 import Select from "./Select";
 
 export default function ThemeMenu({
@@ -16,14 +17,13 @@ export default function ThemeMenu({
   const handleRename = () => renameTheme(name);
 
   return (
-    <form>
+    <form id="theme-menu">
       <h2>Theme</h2>
       <Select
         themes={themes}
         changeTheme={changeTheme}
         currentThemeId={currentThemeId}
       />
-      <button onClick={handleAdd}>Add New Theme</button>
       <input
         type="text"
         name="nameInput"
@@ -32,8 +32,13 @@ export default function ThemeMenu({
         value={name}
         onChange={handleNameInput}
       />
-      <button onClick={handleRename}>Rename Current Theme</button>
-      <button onClick={deleteTheme} disabled={currentThemeId === "defaultID"}>
+      <button className='btn' onClick={handleRename}>Rename Current Theme</button>
+      <button className='btn' onClick={handleAdd}>Add New Theme</button>
+      <button
+        id="theme-menu__delete"
+        onClick={deleteTheme}
+        disabled={currentThemeId === "defaultID"}
+      >
         Delete
       </button>
     </form>
