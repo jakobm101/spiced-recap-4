@@ -36,9 +36,7 @@ function App() {
 
   const updateThemes = (newColors, themeId) => {
     const newThemes = themes.map((theme) => {
-      if (theme.id === themeId) {
-        theme.colors = newColors;
-      }
+      if (theme.id === themeId) theme.colors = newColors;
       return theme;
     });
     setThemes(newThemes);
@@ -49,10 +47,10 @@ function App() {
       <aside>
         <h1>Theme Creator</h1>
         <ThemeMenu
-          colors={colors}
-          changeTheme={changeTheme}
           themes={themes}
+          colors={colors}
           currentThemeId={currentThemeId}
+          changeTheme={changeTheme}
           setThemes={setThemes}
           setCurrentThemeId={setCurrentThemeId}
         />
