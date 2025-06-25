@@ -49,14 +49,7 @@ function App() {
         color.contrastText = contrastText;
       }
     });
-    const newThemes = themes.map((theme) => {
-      if (theme.id === currentThemeId) {
-        theme.colors = newColors;
-      }
-      return theme;
-    });
-    setThemes(newThemes);
-    setColors(newColors);
+    updateThemes(newColors, currentThemeId)
   };
 
   const addTheme = (_, themeName = "new Theme", themeColors = colors) => {
