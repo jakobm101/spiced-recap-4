@@ -19,15 +19,9 @@ function App() {
   const currentTheme = themes.find((theme) => theme.id === currentThemeId);
   const colors = currentTheme.colors;
 
-  // const addColor = (role, hex, contrastText, id) => {
   const addColor = (colorObject) => {
-    console.log("addColor", colorObject);
-    
-    const newColors = [
-      // { id: id, role: role, hex: hex, contrastText: contrastText },
-      colorObject,
-      ...colors,
-    ];
+    console.log("App.jsx addColor", colorObject);
+    const newColors = [colorObject, ...colors];
     const newThemes = themes.map((theme) => {
       if (theme.id === currentThemeId) theme.colors = newColors;
       return theme;

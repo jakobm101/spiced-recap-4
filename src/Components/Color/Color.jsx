@@ -12,7 +12,7 @@ export default function Color({ color, onDelete, changeColor, id }) {
   useEffect(() => {
     setContrastQuotient(callContrastAPI(color.hex, color.contrastText));
   }, []);
-//
+  //
 
   useEffect(() => {
     if (copiedToClipboard) {
@@ -24,8 +24,7 @@ export default function Color({ color, onDelete, changeColor, id }) {
   }, [copiedToClipboard]);
 
   const handleAdd = (colorObject) => {
-    console.log('color handle add');
-    
+    console.log("color handle add");
     changeColor(colorObject);
     callContrastAPI(colorObject.hex, colorObject.contrast);
   };
@@ -53,7 +52,7 @@ export default function Color({ color, onDelete, changeColor, id }) {
           setContrastQuotient(json.overall);
         });
     } catch (error) {
-      console.log('Fetching from that API is quite inconsistent', [error]);
+      console.log("Fetching from that API is quite inconsistent", [error]);
     }
   };
 
