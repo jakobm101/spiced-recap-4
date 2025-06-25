@@ -66,10 +66,10 @@ export default function Color({ color, onDelete, onChange, id }) {
       <h3 className="color-card-headline">{color.hex}</h3>
       <button onClick={() => handleClipboard(color.hex)}>📋 copy hex</button>
       <span hidden={!copiedToClipboard}>copied successfully</span>
-      <p>contrast: {color.contrastText}</p>
+      <p>Contrast Color: {color.contrastText}</p>
       <p>
         {contrastQuotient &&
-          `The contrast quotient is ${
+          `Contrast Quotient: ${
             typeof contrastQuotient === "string" ? contrastQuotient : "loading"
           }`}
       </p>
@@ -82,7 +82,7 @@ export default function Color({ color, onDelete, onChange, id }) {
       <button onClick={handleShowForm}>⚙️ edit</button>
       <p className="color-card-deletion-menu__p">
         {showDelete ? ` Are you sure? ` : ""}
-      </p>
+</p>
       <button onClick={handleShowDeleteMenu}>
         {!showDelete ? "🗑️ delete" : "😱 Cancel "}
       </button>
