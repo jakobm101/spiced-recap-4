@@ -32,11 +32,11 @@ export default function Main({ themes, colors, currentThemeId, setThemes }) {
       {colors.map((color) => {
         return (
           <Color
-            onDelete={() => removeColor(color.id)}
             key={color.id}
             id={color.id}
             color={color}
             changeColor={changeColor}
+            onDelete={() => removeColor(color.id)}
             themes={themes}
             colors={colors}
             currentThemeId={currentThemeId}
