@@ -50,7 +50,7 @@ export default function Color({ color, onDelete, onChange, id }) {
           setContrastQuotient(json.overall);
         });
     } catch (error) {
-      console.error(error);
+      console.log('Fetching from that API is quite inconsistent', [error]);
     }
   };
 
