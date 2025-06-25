@@ -9,7 +9,16 @@ export default function AddForm({ handleAdd, id, classes, colorObject }) {
     let [role, hex, contrast] = ["role", "hex", "contrast"].map((it) =>
       data.get(it)
     );
-    handleAdd(role || "⭐️", hex || "#ffffff", contrast || "#000000", id || uid());
+    // handleAdd(role || "⭐️", hex || "#ffffff", contrast || "#000000", id || uid());
+    const colorObject = {
+      role: role || "⭐️",
+      hex: hex || "#ffffff",
+      contrastText: contrast || "#000000",
+      id: id || uid(),
+    };
+    console.log("handleSubmit");
+    
+    handleAdd(colorObject);
   };
 
   return (

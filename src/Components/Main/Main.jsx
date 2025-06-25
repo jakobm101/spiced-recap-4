@@ -9,13 +9,13 @@ export default function Main({ themes, colors, currentThemeId, setThemes }) {
     setThemes(newThemes);
   };
 
-  const changeColor = (role, hex, contrastText, id) => {
+  const changeColor = (colorObject) => {
     let newColors = [...colors];
     newColors.filter((color) => {
-      if (color.id === id) {
-        color.role = role;
-        color.hex = hex;
-        color.contrastText = contrastText;
+      if (color.id === colorObject.id) {
+        color.role = colorObject.role;
+        color.hex = colorObject.hex;
+        color.contrastText = colorObject.contrastText;
       }
     });
     updateThemes(newColors, currentThemeId);
@@ -36,7 +36,7 @@ export default function Main({ themes, colors, currentThemeId, setThemes }) {
             key={color.id}
             id={color.id}
             color={color}
-            onChange={changeColor}
+            changeColor={changeColor}
           />
         );
       })}

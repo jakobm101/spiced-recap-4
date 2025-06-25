@@ -3,7 +3,7 @@ import AddForm from "../Form/AddForm";
 import "./Color.css";
 import { useEffect } from "react";
 
-export default function Color({ color, onDelete, onChange, id }) {
+export default function Color({ color, onDelete, changeColor, id }) {
   const [showDelete, setShowDelete] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [copiedToClipboard, setCopied] = useState(false);
@@ -23,9 +23,11 @@ export default function Color({ color, onDelete, onChange, id }) {
     }
   }, [copiedToClipboard]);
 
-  const handleAdd = (role, hex, contrast, id) => {
-    onChange(role, hex, contrast, id);
-    callContrastAPI(hex, contrast);
+  const handleAdd = (colorObject) => {
+    console.log('color handle add');
+    
+    changeColor(colorObject);
+    callContrastAPI(colorObject.hex, colorObject.contrast);
   };
 
   const handleShowDeleteMenu = () => setShowDelete(!showDelete);
