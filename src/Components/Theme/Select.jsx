@@ -1,11 +1,10 @@
 import { uid } from "uid";
 
-export default function Select({ themes, changeTheme, currentThemeId}) {
+export default function Select({ themes, changeTheme, currentThemeId }) {
   const handleSelection = (e) => {
-    console.log("handling", e);
-
     changeTheme(e);
   };
+
   return (
     <>
       <select

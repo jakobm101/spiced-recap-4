@@ -7,6 +7,11 @@ export default function ThemeMenu({
   currentThemeId,
   deleteTheme,
 }) {
+  const handleAdd = (e) => {
+    console.log("adding");
+    addTheme(e);
+  };
+
   return (
     <>
       <Select
@@ -14,7 +19,7 @@ export default function ThemeMenu({
         changeTheme={changeTheme}
         currentThemeId={currentThemeId}
       />
-      <button onClick={addTheme}>Add</button>
+      <button onClick={handleAdd}>Add</button>
       <button onClick={deleteTheme}>Delete</button>
     </>
   );
