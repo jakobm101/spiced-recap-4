@@ -7,7 +7,6 @@ export default function ThemeMenu({
   colors,
   themes,
   currentThemeId,
-  changeTheme,
   setThemes,
   setCurrentThemeId,
 }) {
@@ -39,6 +38,12 @@ export default function ThemeMenu({
       return theme;
     });
     setThemes(newThemes);
+  };
+
+  const changeTheme = (e) => {
+    const currentId = e.target.value;
+    const newTheme = themes.find((theme) => theme.id === currentId);
+    setCurrentThemeId(newTheme.id);
   };
 
   return (

@@ -32,12 +32,6 @@ function App() {
     setThemes(newThemes);
   };
 
-  const changeTheme = (e) => {
-    const currentId = e.target.value;
-    const newTheme = themes.find((theme) => theme.id === currentId);
-    setCurrentThemeId(newTheme.id);
-  };
-
   return (
     <section>
       <aside>
@@ -46,7 +40,6 @@ function App() {
           themes={themes}
           colors={colors}
           currentThemeId={currentThemeId}
-          changeTheme={changeTheme}
           setThemes={setThemes}
           setCurrentThemeId={setCurrentThemeId}
         />
