@@ -20,9 +20,10 @@ function App() {
   const currentTheme = themes.find((theme) => theme.id === currentThemeId);
   const colors = currentTheme.colors;
 
-  const addColor = (role, hex, contrastText, id = uid()) => {
+  const addColor = (role, hex, contrastText, id = uid(), colorObject) => {
     const newColors = [
-      { id: id, role: role, hex: hex, contrastText: contrastText },
+      // { id: id, role: role, hex: hex, contrastText: contrastText },
+      colorObject,
       ...colors,
     ];
     const newThemes = themes.map((theme) => {

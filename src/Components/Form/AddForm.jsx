@@ -1,5 +1,6 @@
 import Input from "./Input";
 import "./Form.css";
+import { uid } from "uid";
 
 export default function AddForm({ handleAdd, id, classes, colorObject }) {
   const handleSubmit = (e) => {
@@ -8,7 +9,8 @@ export default function AddForm({ handleAdd, id, classes, colorObject }) {
     let [role, hex, contrast] = ["role", "hex", "contrast"].map((it) =>
       data.get(it)
     );
-    handleAdd(role || "⭐️", hex || "#ffffff", contrast || "#000000", id);
+    const colorObject = {role: role, hex:hex, contrastText: contrast, id: uid()}
+    handleAdd(role || "⭐️", hex || "#ffffff", contrast || "#000000", id, colorObject);
   };
 
   return (
