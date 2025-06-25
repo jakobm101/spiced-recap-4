@@ -12,6 +12,7 @@ export default function Color({ color, onDelete, onChange, id }) {
   useEffect(() => {
     setContrastQuotient(callContrastAPI(color.hex, color.contrastText));
   }, []);
+//
 
   useEffect(() => {
     if (copiedToClipboard) {
