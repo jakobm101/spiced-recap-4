@@ -60,13 +60,6 @@ function App() {
     setThemes(newThemes);
   };
 
-  const deleteTheme = () => {
-    const onFirstTheme = currentThemeId === themes[0].id;
-    const nextTheme = onFirstTheme ? themes[1] : themes[0];
-    const newThemes = themes.filter((theme) => theme.id !== currentThemeId);
-    setThemes(() => newThemes);
-    setCurrentThemeId(nextTheme.id);
-  };
 
   return (
     <section>
@@ -76,16 +69,16 @@ function App() {
           changeTheme={changeTheme}
           addTheme={addTheme}
           renameTheme={renameTheme}
-          deleteTheme={deleteTheme}
           themes={themes}
           currentThemeId={currentThemeId}
+          setThemes={setThemes}
+          setCurrentThemeId={setCurrentThemeId}
         />
         <AddForm handleAdd={addColor} />
       </aside>
 
       <Main
         colors={colors}
-        changeColor={changeColor}
         currentThemeId={currentThemeId}
         updateThemes={updateThemes}
       />

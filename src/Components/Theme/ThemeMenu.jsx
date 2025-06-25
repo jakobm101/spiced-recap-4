@@ -8,13 +8,23 @@ export default function ThemeMenu({
   addTheme,
   renameTheme,
   changeTheme,
-  deleteTheme,
+  setThemes,
+  setCurrentThemeId,
 }) {
   const [name, setName] = useState("");
 
   const handleAdd = (e) => addTheme(e, name);
   const handleNameInput = (e) => setName(e.target.value);
   const handleRename = () => renameTheme(name);
+    
+  const deleteTheme = () => {
+    const onFirstTheme = currentThemeId === themes[0].id;
+    const nextTheme = onFirstTheme ? themes[1] : themes[0];
+    const newThemes = themes.filter((theme) => theme.id !== currentThemeId);
+    setThemes(() => newThemes);
+    setCurrentThemeId(nextTheme.id);
+  };
+
 
   return (
     <form id="theme-menu">
