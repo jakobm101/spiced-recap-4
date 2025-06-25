@@ -5,9 +5,10 @@ export default function Input({
   placeholder,
   color = null,
   type = "text",
+  value
 }) {
-  const [newValue, setNewValue] = useState("");
-  const [oldColor, setOldColor] = useState("#123123");
+  const [newValue, setNewValue] = useState(value || "");
+  const [oldColor, setOldColor] = useState(value || "#123123");
 
   const isColor = (someColor) => /^#[0-9A-Fa-f]{6}$/.test(someColor);
 

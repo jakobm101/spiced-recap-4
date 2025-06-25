@@ -24,9 +24,9 @@ export default function Color({ color, onDelete, onChange, id }) {
 
   const handleAdd = (role, hex, contrast, id) => {
     onChange(role, hex, contrast, id);
-    callContrastAPI(hex, contrast)
-    console.log('yo');
+    callContrastAPI(hex, contrast);
   };
+
   const handleShowDeleteMenu = () => setShowDelete(!showDelete);
   const handleShowForm = () => setShowForm(!showForm);
   const handleClipboard = async (content) => {
@@ -78,11 +78,12 @@ export default function Color({ color, onDelete, onChange, id }) {
         classes={!showForm ? "hider" : ""}
         handleAdd={handleAdd}
         id={id}
+        colorObject={color}
       />
       <button onClick={handleShowForm}>⚙️ edit</button>
       <p className="color-card-deletion-menu__p">
         {showDelete ? ` Are you sure? ` : ""}
-</p>
+      </p>
       <button onClick={handleShowDeleteMenu}>
         {!showDelete ? "🗑️ delete" : "😱 Cancel "}
       </button>
