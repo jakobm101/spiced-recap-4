@@ -1,5 +1,4 @@
 import useLocalStorageState from "use-local-storage-state";
-import { uid } from "uid";
 
 import ThemeMenu from "./Components/Theme/ThemeMenu";
 import AddForm from "./Components/Form/AddForm";
@@ -20,10 +19,9 @@ function App() {
   const currentTheme = themes.find((theme) => theme.id === currentThemeId);
   const colors = currentTheme.colors;
 
-  const addColor = (role, hex, contrastText, id = uid(), colorObject) => {
+  const addColor = (role, hex, contrastText, id) => {
     const newColors = [
-      // { id: id, role: role, hex: hex, contrastText: contrastText },
-      colorObject,
+      { id: id, role: role, hex: hex, contrastText: contrastText },
       ...colors,
     ];
     const newThemes = themes.map((theme) => {
