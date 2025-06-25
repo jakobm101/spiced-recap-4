@@ -32,8 +32,16 @@ export default function ThemeMenu({
         value={name}
         onChange={handleNameInput}
       />
-      <button className='btn' onClick={handleRename}>Rename Current Theme</button>
-      <button className='btn' onClick={handleAdd}>Add New Theme</button>
+      <button
+        disabled={currentThemeId === "defaultID"}
+        className="btn"
+        onClick={handleRename}
+      >
+        Rename Current Theme
+      </button>
+      <button className="btn" onClick={handleAdd}>
+        Add New Theme
+      </button>
       <button
         id="theme-menu__delete"
         onClick={deleteTheme}
