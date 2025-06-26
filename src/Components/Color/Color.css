@@ -7,6 +7,10 @@
   }
 }
 
+.color-card:last-child {
+  border-bottom: none;
+}
+
 .color-card-headline {
   font-family: monospace;
   letter-spacing: 2px;
