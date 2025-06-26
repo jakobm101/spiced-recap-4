@@ -17,6 +17,8 @@ export default function ThemeMenu({
   const handleRename = () => renameTheme(name);
 
   const addTheme = (_, name, id = uid(), themeColors = colors) => {
+    const startEmpty = true;
+    startEmpty && (themeColors = []);
     setThemes(() => [
       { id: id, name: name || id, colors: themeColors },
       ...themes,
