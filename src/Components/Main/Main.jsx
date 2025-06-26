@@ -28,7 +28,7 @@ export default function Main({ themes, colors, currentThemeId, setThemes }) {
 
   return (
     <main>
-      {!colors.length && <h2>Add some colors ⭐️</h2>}
+      {!colors.length && <h2 id="text-colors-empty">Add some colors ⭐️</h2>}
       {colors.map((color) => {
         return (
           <Color
