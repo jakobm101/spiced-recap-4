@@ -43,3 +43,7 @@ h1 {
   justify-content: center;
   cursor: default;
 }
+
+a {
+  text-decoration: none;
+}

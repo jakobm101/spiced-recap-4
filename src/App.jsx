@@ -22,7 +22,9 @@ function App() {
   return (
     <section>
       <aside>
-        <h1>Theme Creator</h1>
+        <a href="https://spiced-recap-4.vercel.app/" target="blank">
+          <h1>Theme Creator</h1>
+        </a>
         <ThemeMenu
           themes={themes}
           colors={colors}
