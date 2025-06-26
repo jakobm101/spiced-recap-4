@@ -15,7 +15,6 @@ export default function Select({ themes, changeTheme, currentThemeId }) {
       >
         {themes.map((theme) => {
           return (
-            // <option key={uid()} value={theme.id} selected={theme.id === currentThemeId}>
             <option key={uid()} value={theme.id}>
               {theme.name}
             </option>
