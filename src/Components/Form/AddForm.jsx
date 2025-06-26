@@ -58,7 +58,7 @@ export default function AddForm({
         placeholder={"#123123"}
       />
       <Input
-        value={colorObject?.contrast || ""}
+        value={colorObject?.contrastText || ""}
         name={"contrast"}
         color={true}
         placeholder={"#000000"}
