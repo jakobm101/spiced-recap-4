@@ -40,11 +40,7 @@ export default function ThemeMenu({
     setThemes(newThemes);
   };
 
-  const changeTheme = (e) => {
-    const currentId = e.target.value;
-    const newTheme = themes.find((theme) => theme.id === currentId);
-    setCurrentThemeId(newTheme.id);
-  };
+  const changeTheme = (e) => setCurrentThemeId(e.target.value);
 
   return (
     <form id="theme-menu">
